@@ -31,13 +31,19 @@ public class Money implements Comparable {
 	}
 	
 	/**
-	 * Returns the amount of the money in the string form "(amount) (currencyname)", e.g. "10.5 SEK".
+	 * Returns the amount of the money in the string form "(amount) (currency name)", e.g. "10.5 SEK".
 	 * Recall that we represent decimal numbers with integers. This means that the "10.5 SEK" mentioned
 	 * above is actually represented as the integer 1050
 	 *  @return String representing the amount of Money.
 	 */
 	public String toString() {
-		return Integer.toString(amount).substring(0,-2) + "." + Integer.toString(amount).substring(-2) + " " + currency.getName();
+		Integer natural, decimals;
+		natural = new Integer((int)(amount / 100));
+		decimals = new Integer(((amount % 10) != 0) ? amount % 100 : (int)((amount % 100) / 10));
+		
+		String decimalString = (decimals > 0) ? "." + decimals.toString() : "";
+		
+		return natural.toString() + decimalString + " " + currency.getName();
 	}
 	
 	/**
@@ -54,7 +60,7 @@ public class Money implements Comparable {
 	 * @return A Boolean indicating if the two monies are equal.
 	 */
 	public Boolean equals(Money other) {
-		return (other.getAmount() == currency.valueInThisCurrency(amount, other.currency));
+		return (other.universalValue().intValue() == this.universalValue().intValue());
 	}
 	
 	/**
@@ -64,7 +70,10 @@ public class Money implements Comparable {
 	 * (Remember to convert the other Money before adding the amounts)
 	 */
 	public Money add(Money other) {
-		amount = amount + other.amount;
+		int universal = this.universalValue().intValue() + other.universalValue().intValue();
+		
+		amount = currency.valueInThisCurrency(other.amount, new Currency("UNI", 1.0)).intValue();
+		
 		return this;
 	}
 

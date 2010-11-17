@@ -25,7 +25,7 @@ public class Currency {
 	 * @return The value of amount in the "universal currency"
 	 */
 	public Integer universalValue(Integer amount) {
-		return (int)(rate*amount.doubleValue());
+		return new Integer((int)Math.round( rate * amount.doubleValue() ));
 	}
 
 	/** Get the name of this Currency.

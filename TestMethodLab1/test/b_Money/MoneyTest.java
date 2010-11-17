@@ -34,10 +34,10 @@ public class MoneyTest {
 		 * 4 negative
 		 */
 		String msg = "Testing equal amounts";
-		assertEquals(msg, 10000, SEK100);
-		assertEquals(msg, 2000, EUR20);
-		assertEquals(msg, 0, EUR0);
-		assertEquals(msg, -10000, SEKn100);
+		assertEquals(msg, new Integer(10000), SEK100.getAmount());
+		assertEquals(msg, new Integer(2000), EUR20.getAmount());
+		assertEquals(msg, new Integer(0), EUR0.getAmount());
+		assertEquals(msg, new Integer(-10000), SEKn100.getAmount());
 	}
 
 	@Test
@@ -97,8 +97,8 @@ public class MoneyTest {
 		 * 1 Different currency based moneys
 		 * 2 Same currencies added
 		 */
-		assertEquals(SEK200.add(SEK200), SEK200.add(EUR20));
-		assertEquals(SEK200, SEK100.add(SEK100));
+		assertEquals(SEK200.add(SEK200).universalValue().intValue(), SEK200.add(EUR20).universalValue().intValue());
+		assertEquals(SEK200.universalValue().intValue(), SEK100.add(SEK100).universalValue().intValue());
 	}
 
 	@Test
@@ -130,8 +130,8 @@ public class MoneyTest {
 		 * 1 Positive negated should be negative
 		 * 2 Negative value negated should be positive
 		 */
-		assertEquals(SEKn100, SEK100.negate() );
-		assertEquals(SEK100, SEKn100.negate() );
+		assertEquals(SEKn100.getAmount(), SEK100.negate().getAmount() );
+		assertEquals(SEK100.getAmount(), SEKn100.negate().getAmount() );
 	}
 
 	@Test
