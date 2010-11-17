@@ -28,7 +28,10 @@ public class MoneyTest {
 	@Test
 	public void testGetAmount() {
 		/*
-		 * Testing equal amounts: positive, negative and zero
+		 * Testing equal amounts: 
+		 * 1,2 positive ammount
+		 * 3 zero
+		 * 4 negative
 		 */
 		String msg = "Testing equal amounts";
 		assertEquals(msg, 10000, SEK100);
@@ -40,7 +43,10 @@ public class MoneyTest {
 	@Test
 	public void testGetCurrency() {
 		/*
-		 * Testing currencies: SEK = SEK, SEK != EUR
+		 * Testing currencies:
+		 * 1 SEK == currency of SEK100
+		 * 2 EUR == currency of EUR10
+		 * 3 EUR != currency of SEK100
 		 */
 		String msg = "Testing currencies";
 		assertSame(msg, SEK, SEK100.getCurrency() );
@@ -52,8 +58,8 @@ public class MoneyTest {
 	@Test
 	public void testToString() {
 		/*
-		 * "(amount) (currencyname)", e.g. "10.5 SEK".
-		 * Tests for negative (without dot) and positive with decimal numbers.
+		 * 1 Test if negative and without decimal numbers is correct
+		 * 2 Test positive with decimal numbers
 		 */
 		String msg = "Testing human readable strings";
 		assertEquals(msg, "-100 SEK", SEKn100.toString() );
@@ -63,7 +69,9 @@ public class MoneyTest {
 	@Test
 	public void testGlobalValue() {
 		/*
-		 * Tests if the universal values are the expected values. Test one without decimal values, and one that are to be rounded.
+		 * Tests universal values:
+		 * 1 Money -> Universal without decimals
+		 * 2 Money -> Universal with decimals rounded up
 		 */
 		String msg = "Testing universal values";
 		assertEquals(msg, new Integer(3000), SEK200.universalValue());
@@ -73,36 +81,67 @@ public class MoneyTest {
 	@Test
 	public void testEqualsMoney() {
 		String msg = "Testing money between currencies";
+		/*
+		 * Test equality of money:
+		 * 1 Test that SEK (200) can be compared to EUR (20)
+		 * 2 Test that we can get false from unequal moneys
+		 */
 		assertTrue(msg, EUR20.equals(SEK200));
 		assertFalse(msg, EUR20.equals(SEK0));
 	}
 
 	@Test
 	public void testAdd() {
+		/*
+		 * Test addition functionality:
+		 * 1 Different currency based moneys
+		 * 2 Same currencies added
+		 */
 		assertEquals(SEK200.add(SEK200), SEK200.add(EUR20));
 		assertEquals(SEK200, SEK100.add(SEK100));
 	}
 
 	@Test
 	public void testSub() {
+		/*
+		 * Test subtraction functionality:
+		 * 1 Different currency based moneys
+		 * 2 Same currencies subtracted to zero
+		 */
 		assertEquals(SEK200.sub(SEK200), SEK200.sub(EUR20));
 		assertEquals(SEK0, SEK100.sub(SEK100));
 	}
 
 	@Test
 	public void testIsZero() {
+		/*
+		 * Zero test:
+		 * 1 Test if zero is generating true
+		 * 2 Test if non zero money generates false
+		 */
 		assertTrue(SEK0.isZero());
 		assertFalse(EUR20.isZero());
 	}
 
 	@Test
 	public void testNegate() {
+		/*
+		 * Test negate functionality:
+		 * 1 Positive negated should be negative
+		 * 2 Negative value negated should be positive
+		 */
 		assertEquals(SEKn100, SEK100.negate() );
 		assertEquals(SEK100, SEKn100.negate() );
 	}
 
 	@Test
 	public void testCompareTo() {
+		/*
+		 * Test compare:
+		 * 1 Original - compared = 0 ==> 0
+		 * 2 Original - compared < 0 ==> -1
+		 * 3 Original - compared > 0 ==> 1
+		 */
 		assertEquals(0, SEK200.compareTo(EUR20));
 		assertEquals(-1, SEKn100.compareTo(EUR10));
 		assertEquals(1, EUR20.compareTo(SEK0));
