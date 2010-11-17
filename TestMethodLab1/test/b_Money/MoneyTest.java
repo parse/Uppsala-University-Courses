@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.omg.CORBA.SystemException;
 
+import com.sun.corba.se.impl.orbutil.ObjectUtility;
 import com.sun.xml.internal.messaging.saaj.packaging.mime.internet.ParseException;
 
 public class MoneyTest {
@@ -100,9 +101,14 @@ public class MoneyTest {
 		 * 1 Different currency based moneys
 		 * 2 Same currencies added
 		 */
-		//throw new ParseException(SEK200.getAmount().toString());
-		//assertEquals((new Money(40000, SEK)).getAmount().intValue(), SEK200.add(SEK200).getAmount().intValue());
-		//assertEquals(SEK200.universalValue().intValue(), SEK100.add(SEK100).universalValue().intValue());
+		/*Money testSEK400 = new Money(20000, SEK);
+		Money testSEK300 = new Money(30000, SEK);
+		Money testSEK100 = new Money(10000, SEK);
+		Money testEUR20 = new Money(2000, EUR);
+		Money testSEK200 = new Money(20000, SEK);*/
+		
+		assertEquals((new Money(40000, SEK)).getAmount().intValue(), SEK200.add(SEK200).getAmount().intValue());
+		assertEquals((new Money(40000, SEK)).getAmount().intValue(), SEK200.add(EUR20).getAmount().intValue());
 	}
 
 	@Test

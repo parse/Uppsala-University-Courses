@@ -72,9 +72,10 @@ public class Money implements Comparable {
 	public Money add(Money other) {
 		Integer otherAmount = currency.valueInThisCurrency(other.amount, other.currency);
 		
-		amount = amount + otherAmount.intValue();
-		
-		return this;
+		Money tmpWallet = new Money(otherAmount.intValue(), this.currency);
+		tmpWallet.amount = tmpWallet.amount + otherAmount.intValue();
+
+		return tmpWallet;
 	}
 
 	/**
@@ -84,8 +85,12 @@ public class Money implements Comparable {
 	 * (Again, remember converting the value of the other Money to this Currency)
 	 */
 	public Money sub(Money other) {
-		amount = amount - other.amount;
-		return this;
+		Integer otherAmount = currency.valueInThisCurrency(other.amount, other.currency);
+		
+		Money tmpWallet = new Money(otherAmount.intValue(), this.currency);
+		tmpWallet.amount = tmpWallet.amount - otherAmount.intValue();
+		throw new RuntimeException(tmpWallet.getAmount().toString());
+		//return tmpWallet;
 	}
 	
 	/**
