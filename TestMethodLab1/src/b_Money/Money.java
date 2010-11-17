@@ -70,9 +70,9 @@ public class Money implements Comparable {
 	 * (Remember to convert the other Money before adding the amounts)
 	 */
 	public Money add(Money other) {
-		int universal = this.universalValue().intValue() + other.universalValue().intValue();
+		Integer otherAmount = currency.valueInThisCurrency(other.amount, other.currency);
 		
-		amount = currency.valueInThisCurrency(other.amount, new Currency("UNI", 1.0)).intValue();
+		amount = amount + otherAmount.intValue();
 		
 		return this;
 	}
