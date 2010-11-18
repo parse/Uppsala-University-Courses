@@ -89,8 +89,8 @@ public class Money implements Comparable {
 		
 		Money tmpWallet = new Money(otherAmount.intValue(), this.currency);
 		tmpWallet.amount = tmpWallet.amount - otherAmount.intValue();
-		throw new RuntimeException(tmpWallet.getAmount().toString());
-		//return tmpWallet;
+		//throw new RuntimeException(tmpWallet.getAmount().toString());
+		return tmpWallet;
 	}
 	
 	/**
@@ -105,8 +105,10 @@ public class Money implements Comparable {
 	 * @return A new instance of the money class initialized with the new negated money amount.
 	 */
 	public Money negate() {
-		amount = amount*-1;
-		return this;
+		int newAmount = amount*-1;
+		Money tmpWallet = new Money(newAmount, currency);
+		
+		return tmpWallet;
 	}
 	
 	/**
