@@ -43,7 +43,7 @@ public class Bank {
 			throw new AccountExistsException();
 		}
 		else {
-			accountlist.get(accountid);
+			accountlist.put( accountid, new Account(accountid, this.currency) );
 		}
 	}
 	
@@ -54,7 +54,7 @@ public class Bank {
 	 * @throws AccountDoesNotExistException If the account does not exist
 	 */
 	public void deposit(String accountid, Money money) throws AccountDoesNotExistException {
-		if (accountlist.containsKey(accountid)) {
+		if (!accountlist.containsKey(accountid)) {
 			throw new AccountDoesNotExistException();
 		}
 		else {
@@ -75,7 +75,7 @@ public class Bank {
 		}
 		else {
 			Account account = accountlist.get(accountid);
-			account.deposit(money);
+			account.withdraw(money);
 		}
 	}
 	
@@ -120,7 +120,7 @@ public class Bank {
 	 * @throws AccountDoesNotExistException If one of the accounts do not exist
 	 */
 	public void transfer(String fromaccount, String toaccount, Money amount) throws AccountDoesNotExistException {
-		transfer(fromaccount, this, fromaccount, amount);
+		transfer(fromaccount, this, toaccount, amount);
 	}
 
 	/**

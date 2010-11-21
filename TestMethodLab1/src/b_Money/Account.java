@@ -45,7 +45,7 @@ public class Account {
 	 */
 	public void tick() {
 		for (TimedPayment tp : timedpayments.values()) {
-			tp.tick(); tp.tick();
+			tp.tick(); 
 		}
 	}
 	
@@ -56,6 +56,7 @@ public class Account {
 	public void deposit(Money money) {
 		content = content.add(money);
 	}
+
 	
 	/**
 	 * Withdraw money from the account
