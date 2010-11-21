@@ -118,8 +118,8 @@ public class MoneyTest {
 		 * 1 Different currency based moneys
 		 * 2 Same currencies subtracted to zero
 		 */
-		assertEquals(SEK200.sub(SEK200), SEK200.sub(EUR20));
-		assertEquals(SEK0, SEK100.sub(SEK100));
+		assertEquals(SEK200.sub(SEK200).getAmount(), SEK200.sub(EUR20).getAmount());
+		assertEquals(SEK0.getAmount(), SEK100.sub(SEK100).getAmount());
 	}
 
 	@Test

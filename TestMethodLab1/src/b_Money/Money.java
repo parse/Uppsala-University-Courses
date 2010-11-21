@@ -121,6 +121,13 @@ public class Money implements Comparable {
 	 * A positive integer if this Money is more valuiable than the other Money.
 	 */
 	public int compareTo(Object other) {
+		Money testOther = (Money) other;
+		if ( this.universalValue() < testOther.universalValue() )
+			return -1;
+		else if (this.universalValue() > testOther.universalValue() )
+			return 1;
+		else
+			return 0;
 		
 	}
 }
