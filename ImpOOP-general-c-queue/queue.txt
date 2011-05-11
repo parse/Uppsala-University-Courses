@@ -1,0 +1,46 @@
+Implementation av kö i C:
+
+Uppgift: Inlämningsuppgift 2
+Författare: Anders Hassis och Daniel Lervik
+Datum: 2009-09-30
+Kurs: Imperativ och objektorienterad programmering, 10hp
+
+    newQueue() 
+    PRE: (inget)
+    POST: Skapar en tom kö
+    RETURN: Returnerar en tom kö
+
+    enque(it, q)
+    PRE: q är en pekare till en initierad kö, it är en godtycklig pekare
+    POST: Det som it pekar på ligger i slutet av kön q
+    RETURN: (inget)
+
+    deque(q)
+    PRE: q är en pekare till en initierad kö
+    POST: Om kön inte är tom är det första elementet borttaget
+    RETURN: NULL om kön är tom, annars det värde som är först
+
+    first(q)
+    PRE: q är en pekare till en initierad kö
+    POST: (inget)
+    RETURN: Det första värdet i kön som q pekar på
+
+    qLength(q)
+    PRE: q är en pekare till en initierad kö
+    POST: (inget)
+    RETURN: Längden på kön som q pekar på
+
+    itReset(q)
+    PRE: q är en pekare till en initierad kö
+    POST: Köns innehåll oförändrat, första elementet satt som aktuellt element
+    RETURN: (inget)
+
+    itMore(q)
+    PRE: q är en pekare till en initierad kö
+    POST: (inget)
+    RETURN: 1 om det finns fler element i kön efter aktuellt element, annars 0. 
+
+    itNext(q)
+    PRE: q är en pekare till en initierad kö
+    POST: Köns innehåll oförändrat. Om det finns ett aktuellt element kommer dess efterföljare vara det nya aktuella    elementet.
+    RETURN: Om det vid inträdet finns ett aktuellt element kommer dess värde returneras, annars NULL
