@@ -1,0 +1,12 @@
+b
+1=a
+a+b
+b+a=c
+2=b
+c
+(2*x+a*sin(x))'x
+exp(2*x)=y
+y'x
+x'x
+a'a
+(u'u+2*v'v)*z
